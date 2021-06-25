@@ -5,6 +5,10 @@ import cv2
 from std_msgs.msg import Float64MultiArray
 import numpy as np
 
+
+# gazou yomikomi enkensyutu
+
+
 def operator():
     #rospy.init_node('operator', anonymous=True)
     #pub = rospy.Publisher('image_data', Image, queue_size=10)

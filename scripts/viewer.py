@@ -5,6 +5,9 @@ import cv2
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 
+
+# image_proc wo subscribe and opencv de byouga
+
 def process_image(msg):
     try:
         bridge = CvBridge()

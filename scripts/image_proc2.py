@@ -6,6 +6,8 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
+# webcamera enkensyutu
+
 l = []
 j = []
 

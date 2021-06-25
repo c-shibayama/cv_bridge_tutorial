@@ -5,6 +5,8 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
+# webcamera opencv de byouga wo publish
+
 def process_image(msg):
     try:
         bridge = CvBridge()

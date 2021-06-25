@@ -6,6 +6,8 @@ from threading import (Event, Thread)
 from std_msgs.msg import Float64MultiArray
 
 
+# enzahyou wo subscribe
+
 positon = []
 
 def callback(data):
