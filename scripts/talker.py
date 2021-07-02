@@ -3,6 +3,8 @@
 import rospy
 from std_msgs.msg import Float64MultiArray
 
+# input position wo test5.py he publish
+
 def talker():
     pub = rospy.Publisher('chatter', Float64MultiArray, queue_size=10)
     rospy.init_node('talker', anonymous=True)
