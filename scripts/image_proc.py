@@ -4,6 +4,8 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
 import numpy as np
+from std_msgs.msg import Float64MultiArray
+import math
 
 # webcamera opencv de byouga wo publish
 
@@ -29,9 +31,51 @@ def process_image(msg):
         pub.publish(imgMsg)
 
 	cv2.imshow('image', img)
+        cv2.setMouseCallback('image', onMouse)
+        
+        #print(img.shape)
         cv2.waitKey(1)
     except Exception as err:
         print err
+
+def onMouse(event, x, y, flags, params):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        x = x - 640/2
+        y = y - 480/2
+        print(x, y)
+        pub = rospy.Publisher('click', Float64MultiArray, queue_size=10)
+        array = list(range(3))
+        array[0] = x*0.01
+        array[1] = y*0.01
+        array[2] = -3
+        posi = Float64MultiArray(data=array)
+        pub.publish(posi)
+
+        ztheta = math.pi/2
+        ytheta = 0
+        xtheta = -math.pi/2
+        Rz = np.array([[math.cos(ztheta), -math.sin(ztheta), 0], [math.sin(ztheta), math.cos(ztheta), 0], [0, 0, 1]])
+        #print(Rz)
+        Ry = np.array([[math.cos(ytheta), 0, math.sin(ytheta)], [0, 1, 0], [-math.sin(ytheta), 0, math.cos(ytheta)]])
+        Rx = np.array([[1, 0, 0], [0, math.cos(xtheta), -math.sin(xtheta)], [0, math.sin(xtheta), math.cos(xtheta)]])
+        R = np.dot(np.dot(Rz, Ry), Rx)
+        print(R)
+        
+        rearray = np.dot(R, np.array([[0],[0],[3]])) + np.array([[3],[0],[0]])
+        print(rearray)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def start_node():
     rospy.init_node('img_proc')

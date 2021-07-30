@@ -26,7 +26,7 @@ def process_image(msg):
 
 	
 	
-	#a = []
+	
 	for i in circles [ 0 , : ] :
 	    cv2.circle ( orig, (i[0], i[1]), i[2], (0, 255, 0), 2 )
 	    cv2.circle ( orig, (i[0], i[1]), 2   , (0, 0, 255), 3 )
@@ -34,6 +34,8 @@ def process_image(msg):
 	    l.append(i[0])
 	    j.append(i[1])
 	    #print(l)
+            #l += 
+            #if 
 	    
 	    #print(j)
             #a = i[0] 
@@ -55,8 +57,8 @@ def process_image(msg):
         print err
 
 def start_node():
-    rospy.init_node('img_proc')
-    rospy.loginfo('img_proc node started')
+    rospy.init_node('image_proc2')
+    rospy.loginfo('image_proc2 node started')
     rospy.Subscriber("image_raw", Image, process_image)
     rospy.spin()
 

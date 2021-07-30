@@ -11,6 +11,13 @@ import numpy as np
 # position wo test52 he publish
 
 
+def onMouse(event, x, y, flags, params):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        print(x, y)
+
+
+
+
 def operator():
 
     img = cv2.imread('src/cv_bridge_tutorial/scripts/ball.jpg')
@@ -37,10 +44,14 @@ def operator():
     posi = Float64MultiArray(data=array)
     pub.publish(posi)
 
-    path = os.getcwd()
-    print(path)
+    #path = os.getcwd()
+    #print(path)
 
     cv2.imshow('image', img)
+    
+    cv2.setMouseCallback('image', onMouse)
+
+
     cv2.waitKey(0)
 
 
